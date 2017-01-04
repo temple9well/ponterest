@@ -1,0 +1,1 @@
+json.array! @pons, partial: 'pons/pon', as: :pon
