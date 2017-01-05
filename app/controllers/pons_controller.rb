@@ -1,6 +1,7 @@
 class PonsController < ApplicationController
   before_action :set_pon, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :current_user, only: [:edit, :update, :destroy]
   # GET /pons
   # GET /pons.json
   def index
@@ -14,7 +15,7 @@ class PonsController < ApplicationController
 
   # GET /pons/new
   def new
-    @pon = Pon.new
+    @pon = current_user.pons.build
   end
 
   # GET /pons/1/edit
@@ -24,7 +25,7 @@ class PonsController < ApplicationController
   # POST /pons
   # POST /pons.json
   def create
-    @pon = Pon.new(pon_params)
+    @pon = current_user.pons.build(pon_params)
 
     respond_to do |format|
       if @pon.save
@@ -71,4 +72,8 @@ class PonsController < ApplicationController
     def pon_params
       params.require(:pon).permit(:description)
     end
+
+    def correct_user
+      @pon = current_user.pons.find_by(id: params[:id])
+      redirect_to pons_path, notice: "Not authorized to edit this pon" if @pon.nil?
 end
