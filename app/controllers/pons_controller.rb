@@ -29,7 +29,7 @@ class PonsController < ApplicationController
 
     respond_to do |format|
       if @pon.save
-        format.html { redirect_to @pon, notice: 'Pon was successfully created.' }
+        format.html { redirect_to pons_path, notice: 'Pon was successfully created.' }
         format.json { render :show, status: :created, location: @pon }
       else
         format.html { render :new }
@@ -78,5 +78,5 @@ class PonsController < ApplicationController
       redirect_to pons_path, notice: "Not authorized to edit this pon" if @pon.nil?
     end
 
-    
+
 end

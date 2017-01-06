@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<div class="row">
+<div class="row ponterest-grid">
   <% @pons.each do |pon| %>
-    <div class="col-md-3">
+    <div class="col-md-3 pon-item">
       <div class="panel panel-default pon">
         <div class="panel-body">
           <%= image_tag pon.pon_image.url(:medium), class: 'img-responsive' %>
