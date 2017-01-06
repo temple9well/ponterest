@@ -70,10 +70,13 @@ class PonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pon_params
-      params.require(:pon).permit(:description)
+      params.require(:pon).permit(:description, :pon_image)
     end
 
     def correct_user
       @pon = current_user.pons.find_by(id: params[:id])
       redirect_to pons_path, notice: "Not authorized to edit this pon" if @pon.nil?
+    end
+
+    
 end
