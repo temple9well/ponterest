@@ -1,12 +1,15 @@
+<div>
+  <%= image_tag @user.avatar.url(:thumb) %>
+</div>
 <h3><%= @user.username %></h3>
-<p>Lorem ipsum solor</p>
+<p><%= @user.bio %></p>
 
 <div class="row ponterest-grid">
   <% @user.pons.each do |pon| %>
     <div class="col-md-3 pon-item">
       <div class="panel panel-default pon">
         <div class="panel-body">
-          <%= image_tag pon.pon_image.url(:medium), class: 'img-responsive' %>
+          <%= link_to image_tag(pon.pon_image.url(:medium)), pon, class: 'img-responsive' %>
         </div>
         <div class="panel-footer">
           <p><strong><%= link_to pon.user.username, user_path(pon.user.username) %></strong></p>
