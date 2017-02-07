@@ -1,5 +1,5 @@
 function masonryAllTheThings() {
-  $('.ponterest-grid').imagesloaded(function(){
+  $('.ponterest-grid').imagesLoaded(function(){
     $('.ponterest-grid').masonry({
       itemSelector: '.pon-item',
       columnWidth: '.pon-item'

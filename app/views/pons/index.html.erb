@@ -5,16 +5,21 @@
     <div class="col-md-3 pon-item">
       <div class="panel panel-default pon">
         <div class="panel-body">
-          <%= link_to image_tag(pon.pon_image.url(:medium)), pon %>
+          <%= link_to image_tag(pon.pon_image.url(:medium)), pon, class: 'img-responsive' %>
         </div>
         <div class="panel-footer">
           <p><strong><%= link_to pon.user.username, user_path(pon.user.username) %></strong></p>
           <p><%= pon.description %></p>
           <% if pon.user == current_user %>
-          <div>
-          <%= link_to 'Edit', edit_pon_path(pon) %>
-          <%= link_to 'Delete', pon, method: :delete, data: { confirm: 'Are you sure?' } %>
-          </div>
+            <div>
+            <%= link_to 'Edit', edit_pon_path(pon) %>
+            <%= link_to 'Delete', pon, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+          <% end %>
+          <% if user_signed_in? && pon.user != current_user %>
+            <div>
+              <%= link_to 'Repost', repost_pon_path(pon), method: :post, data: { confirm: 'Are you sure?' } %>
+            </div>
           <% end %>
         </div>
       </div>

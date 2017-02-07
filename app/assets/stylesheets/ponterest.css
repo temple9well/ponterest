@@ -6,6 +6,10 @@ body {
   padding: 0px;
 }
 
-pon img {
+.pon img {
   width: 100%;
+}
+
+.grid-item {
+  width: 200px;
 }

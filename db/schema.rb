@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170117124626) do
+ActiveRecord::Schema.define(version: 20170205163617) do
 
   create_table "pons", force: :cascade do |t|
     t.string   "description"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20170117124626) do
     t.string   "pon_image_content_type"
     t.integer  "pon_image_file_size"
     t.datetime "pon_image_updated_at"
+    t.integer  "original_pon_id"
   end
 
   add_index "pons", ["user_id"], name: "index_pons_on_user_id"

@@ -1,5 +1,5 @@
 class PonsController < ApplicationController
-  before_action :set_pon, only: [:show, :edit, :update, :destroy]
+  before_action :set_pon, only: [:show, :edit, :update, :destroy, :repost]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :current_user, only: [:edit, :update, :destroy]
   # GET /pons
@@ -60,6 +60,11 @@ class PonsController < ApplicationController
       format.html { redirect_to pons_url, notice: 'Pon was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def repost
+    @pon.repost(current_user)
+    redirect_to pons_path
   end
 
   private
