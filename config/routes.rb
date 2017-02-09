@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     member do
       post '/repost' => 'pons#repost'
     end
+
+    member do
+      post '/like' => 'pons#like'
+    end
   end
 
 

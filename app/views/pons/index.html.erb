@@ -10,6 +10,7 @@
         <div class="panel-footer">
           <p><strong><%= link_to pon.user.username, user_path(pon.user.username) %></strong></p>
           <p><%= pon.description %></p>
+          <p><%= pluralize(pon.likes.count, "like") %></p>
           <% if pon.user == current_user %>
             <div>
             <%= link_to 'Edit', edit_pon_path(pon) %>
@@ -19,6 +20,7 @@
           <% if user_signed_in? && pon.user != current_user %>
             <div>
               <%= link_to 'Repost', repost_pon_path(pon), method: :post, data: { confirm: 'Are you sure?' } %>
+              <%= link_to 'Like', like_pon_path(pon), method: :post, class: 'pull-right' %>
             </div>
           <% end %>
         </div>

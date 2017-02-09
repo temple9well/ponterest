@@ -1,5 +1,5 @@
 class PonsController < ApplicationController
-  before_action :set_pon, only: [:show, :edit, :update, :destroy, :repost]
+  before_action :set_pon, only: [:show, :edit, :update, :destroy, :repost, :like]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :current_user, only: [:edit, :update, :destroy]
   # GET /pons
@@ -65,6 +65,17 @@ class PonsController < ApplicationController
   def repost
     @pon.repost(current_user)
     redirect_to pons_path
+  end
+
+  def like
+    @likes = @pon.likes.build(user_id: current_user.id)
+    if @likes.save
+      flash[:notice] = "You liked this pon!"
+      redirect_to pons_path
+    else
+      flash[:notice] = "You already liked this pon!"
+      redirect_to pons_path
+    end
   end
 
   private
